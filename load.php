@@ -10,3 +10,5 @@ if(isset($_POST['charset_check']))
 
 W::add_mixin('PresentationBuildersMixin');
 W::add_mixin('PresentationFormattersMixin');
+W::add_mixin('PresentationFormMixin');
+W::add_mixin('PresentationTagMixin');

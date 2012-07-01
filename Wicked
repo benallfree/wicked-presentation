@@ -1,5 +1,9 @@
 <?
 
 $config = array(
-  'requires'=>array('string', 'class_lazyloader'),
+  'requires'=>array(
+    'string', 
+    'class_lazyloader',
+    'request',
+  ),
 );
