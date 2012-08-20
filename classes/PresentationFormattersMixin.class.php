@@ -45,7 +45,7 @@ class PresentationFormattersMixin extends Mixin
   
   static function simple_format($s, $hyperlink=true)
   {
-    $s = h($s);
+    $s = W::h($s);
     $s = preg_replace("/\n/", "<br/>", $s);
     $s = preg_replace("/\s\s/", " &nbsp;", $s);
     $s = preg_replace("/\t/", " &nbsp;", $s);
@@ -111,7 +111,7 @@ class PresentationFormattersMixin extends Mixin
     $s = array();
     foreach($attrs as $k=>$v)
     {
-      $v = h($v);
+      $v = W::h($v);
       $s[] = "$k = \"$v\"";
     }
     $s = join($s,' ');

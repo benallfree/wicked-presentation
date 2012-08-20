@@ -33,7 +33,7 @@ class PresentationFormMixin extends Mixin
   
   static function form_tag($action='', $params=null)
   {
-    $action = h($action);
+    $action = W::h($action);
     return <<<FORM
       <form method="post" enctype="multipart/form-data" action="$action" $params>
        <input type="hidden" name="charset_check" value="ä™®">
@@ -134,7 +134,7 @@ FORM;
     if ($obj->errors && array_key_exists($field, $obj->errors) && $obj->errors[$field]!='') $attrs['class'] = 'error_field';
     $args = func_get_args();
     $s = splice_attrs($attrs, $args);
-    $value = h($value);
+    $value = W::h($value);
     return "<textarea $s>$value</textarea>";
   }
   
@@ -156,7 +156,7 @@ FORM;
   
   static function command_field($name)
   {
-    return '<input type="hidden" name="cmd" value="'.h($name).'"/>';
+    return '<input type="hidden" name="cmd" value="'.W::h($name).'"/>';
   }
   
   static function hidden_field()

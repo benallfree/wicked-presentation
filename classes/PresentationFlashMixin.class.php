@@ -8,14 +8,14 @@ class PresentationFlashMixin extends Mixin
   static function init()
   {
     W::register_filter('flashes', 'W::flashes');
-    if(isset($_COOKIE['flash_next']))
+    if(W::session_get('flash_next'))
     {
-      $val = json_decode($_COOKIE['flash_next']);
+      $val = json_decode(W::session_get('flash_next'));
       if(is_array($val))
       {
         self::$flash = $val;
       }
-      setcookie('flash_next', null, 0, '/');
+      W::session_set('flash_next', null);
     }
   }
   
@@ -29,7 +29,7 @@ class PresentationFlashMixin extends Mixin
     $args = func_get_args();
     $msg = call_user_func_array('self::flash_interpolate', $args);
     self::$flash_next[] = $msg;
-    setcookie('flash_next', json_encode(self::$flash_next), 0, '/');
+    W::session_set('flash_next', json_encode(self::$flash_next), 0, '/');
   }
   
   static function flash()

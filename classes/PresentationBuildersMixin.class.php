@@ -17,7 +17,7 @@ class PresentationBuildersMixin extends Mixin
     );
     $args = func_get_args();
     $s = W::splice_attrs($attrs, $args,3);
-    $text = h($text);
+    $text = W::h($text);
   	return "<a $s >$text</a>";
   }
   
@@ -30,7 +30,7 @@ class PresentationBuildersMixin extends Mixin
     $args = func_get_args();
     $s = W::splice_attrs($attrs, $args,2);
     $text = __($text);
-    $html = "<div $s><a href='".h($path)."' onclick='return false;'>$text</a></div>";
+    $html = "<div $s><a href='".W::h($path)."' onclick='return false;'>$text</a></div>";
     return $html;
   }
   
@@ -48,7 +48,7 @@ class PresentationBuildersMixin extends Mixin
     $args = func_get_args();
     $args = array_shift($args);
     $s = W::splice_attrs($attrs, $args,$start);
-    $email = h($email);
+    $email = W::h($email);
     return "<a href=\"mailto:$email\" $s>$text</a>";
   }
   

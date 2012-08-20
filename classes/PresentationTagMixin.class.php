@@ -95,12 +95,12 @@ class PresentationTagMixin extends Mixin
   		  if(is_object($v->$value_field)) wax_error("select_tag() is expecting $value_field to be a string or int, but it's an object");
   		  if(!is_string($v->$display_field) && !is_numeric($v->$display_field)) wax_error("select_tag() is expecting $display_field to be a string, but it's not", array($options, $v, $v->$display_field));
         $value = $v->$value_field;
-        $display = h($v->$display_field);
+        $display = W::h($v->$display_field);
       } else {
         $value = $k;
-        $display = h($v);
+        $display = W::h($v);
   	  }
-  		$s.= option_tag($value, $display, $default_values); 
+  		$s.= self::option_tag($value, $display, $default_values); 
   	}
   	$s.="</select>";
   	return $s;
@@ -130,14 +130,14 @@ class PresentationTagMixin extends Mixin
   		  if(is_object($v->$value_field)) wax_error("select_tag() is expecting $value_field to be a string or int, but it's an object");
   		  if(!is_string($v->$display_field) && !is_numeric($v->$display_field)) wax_error("select_tag() is expecting $display_field to be a string, but it's not", array($options, $v, $v->$display_field));
         $value = $v->$value_field;
-        $display = h($v->$display_field);
+        $display = W::h($v->$display_field);
       } else {
         $value = $k;
-        $display = h($v);
+        $display = W::h($v);
   	  }
       $is_selected = array_search($value, $default_values)!==FALSE;
   
-  		$s.= "<input name=\"$name\" type=\"checkbox\" value=\"".h($value)."\"" . (($is_selected) ? ' checked' : '') . " $attrs/>$display<br/>";
+  		$s.= "<input name=\"$name\" type=\"checkbox\" value=\"".W::h($value)."\"" . (($is_selected) ? ' checked' : '') . " $attrs/>$display<br/>";
   	}
   	return $s;
   }
@@ -147,12 +147,12 @@ class PresentationTagMixin extends Mixin
     if(!is_array($selected_values)) $selected_values = array($selected_values);
     $is_selected = array_search($value, $selected_values)!==FALSE;
   
-    return "<option value=\"".h($value)."\"" . (($is_selected) ? ' selected="selected"' : '') . ">$display</option>";
+    return "<option value=\"".W::h($value)."\"" . (($is_selected) ? ' selected="selected"' : '') . ">$display</option>";
   }
   
   static function command_tag($name)
   {
-    echo "<input type='hidden' name='cmd' value='".h($name)."'/>";
+    echo "<input type='hidden' name='cmd' value='".W::h($name)."'/>";
   }
   
   static function checkbox_tag($name, $value=1, $is_checked=false)
@@ -225,7 +225,7 @@ class PresentationTagMixin extends Mixin
     );
     $args = func_get_args();
     $s = W::splice_attrs($attrs, $args,2);
-    $value = h($value);
+    $value = W::h($value);
     return "<textarea $s>$value</textarea>";
   }
 }
